@@ -62,14 +62,14 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <LineChart fx:id="lineChartWorkedTime" title="Worked time" GridPane.columnSpan="7" GridPane.rowIndex="1">
+                                          <BarChart fx:id="barChartWorkedTime" title="Worked time" GridPane.columnSpan="7" GridPane.rowIndex="1">
                                             <xAxis>
                                               <CategoryAxis label="date" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis label="hours" side="LEFT" upperBound="24.0" />
                                             </yAxis>
-                                          </LineChart>
+                                          </BarChart>
                                           <Label text="User: " GridPane.columnIndex="4" />
                                           <ComboBox fx:id="comboBoxUserLogin" GridPane.columnIndex="5" />
                                           <DatePicker fx:id="datePickerFrom" GridPane.columnIndex="1" />

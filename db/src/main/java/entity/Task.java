@@ -78,6 +78,16 @@ public class Task {
         return false;
     }
 
+    public int getTime(String login, Date date) {
+        int time = 0;
+        for (WorkedTime workedTime: workedTimeList) {
+            if (workedTime.getDate().equals(date) && workedTime.getLogin().equals(login)) {
+                time = workedTime.getTime();
+            }
+        }
+        return time;
+    }
+
     public long getId() {
         return id;
     }

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -56,7 +57,7 @@ public class MainFromController implements Initializable {
     public TextField textFieldLogin;
 
     @FXML
-    public LineChart lineChartWorkedTime;
+    public BarChart barChartWorkedTime;
 
     @FXML
     public ComboBox comboBoxUserLogin;
@@ -184,13 +185,22 @@ public class MainFromController implements Initializable {
             Task task = DataController.INSTANCE.getTaskByName(listViewTaskList.getSelectionModel().getSelectedItem().toString());
             String login = (String) comboBoxUserLogin.getValue();
 
-            lineChartWorkedTime.getData().clear();
+            barChartWorkedTime.getData().clear();
             XYChart.Series series = new XYChart.Series();
             series.setName(login);
-            for (WorkedTime workedTime : task.getWorkedTimeList(login, dateFrom, dateTo)) {
-                series.getData().add(new XYChart.Data(new SimpleDateFormat("dd.MM.yyy").format(workedTime.getDate()), workedTime.getTime() / 60));
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateFrom);
+            while (calendar.getTime().before(dateTo)) {
+                series.getData().add(new XYChart.Data(new SimpleDateFormat("dd.MM.yyy").format(calendar.getTime()), task.getTime(login, calendar.getTime()) / 60));
+                calendar.add(Calendar.DATE, 1);
             }
-            lineChartWorkedTime.getData().add(series);
+            barChartWorkedTime.getData().add(series);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Wrong 'DateFrom' and 'DateTo' order");
+            alert.showAndWait();
         }
     }
 
