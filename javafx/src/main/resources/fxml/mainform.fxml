@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFromController">
+   <children>
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints minWidth="10.0" prefWidth="150.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MenuBar GridPane.columnSpan="3">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="menuItemClose" mnemonicParsing="false" onAction="#handleCloseApp" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Tracking">
+                  <items>
+                    <MenuItem fx:id="menuItemStartTracking" mnemonicParsing="false" onAction="#handleStartTracking" text="Start" />
+                        <MenuItem fx:id="menuItemStopTracking" mnemonicParsing="false" onAction="#handleStopTracking" text="Stop" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" onAction="#handleShowAbout" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <SplitPane dividerPositions="0.7" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="50.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <LineChart fx:id="lineChartWorkedTime" title="Worked time" GridPane.columnSpan="7" GridPane.rowIndex="1">
+                                            <xAxis>
+                                              <CategoryAxis label="date" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis label="hours" side="LEFT" upperBound="24.0" />
+                                            </yAxis>
+                                          </LineChart>
+                                          <Label text="User: " GridPane.columnIndex="4" />
+                                          <ComboBox fx:id="comboBoxUserLogin" GridPane.columnIndex="5" />
+                                          <DatePicker fx:id="datePickerFrom" GridPane.columnIndex="1" />
+                                          <Label text="From: " />
+                                          <DatePicker fx:id="datePickerTo" GridPane.columnIndex="3" />
+                                          <Label text="To: " GridPane.columnIndex="2" />
+                                          <Button fx:id="buttonDraw" mnemonicParsing="false" onAction="#handleDrawChart" prefWidth="100.0" text="Draw" GridPane.columnIndex="6" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Task list" />
+                                          <ListView fx:id="listViewTaskList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                                          <Button fx:id="buttonEditTaskDetails" mnemonicParsing="false" onAction="#handleEditTaskDetails" text="Edit task details" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <GridPane layoutX="6.0" layoutY="-31.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints halignment="RIGHT" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                               <Label text="Delta (in min): " />
+                               <TextField fx:id="textFieldNotifierDelta" GridPane.columnIndex="1" />
+                               <Button fx:id="buttonStartTracking" mnemonicParsing="false" onAction="#handleStartTracking" text="Start tracking" GridPane.columnIndex="2" />
+                              <Button fx:id="buttonStopTracking" disable="true" mnemonicParsing="false" onAction="#handleStopTracking" text="Stop tracking" GridPane.columnIndex="3" />
+                              <TextArea fx:id="textAreaLog" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+            <Label text="Login: " GridPane.columnIndex="1" />
+            <TextField fx:id="textFieldLogin" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="700.0" prefHeight="400.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
+   <children>
+      <SplitPane dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Task list" GridPane.columnSpan="4" GridPane.halignment="CENTER" />
+                        <ListView fx:id="listViewTaskList" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+                        <Button fx:id="buttonAddTask" mnemonicParsing="false" onAction="#handleAddTask" prefWidth="100.0" text="Add" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="buttonDeleteTask" mnemonicParsing="false" onAction="#handleDeleteTask" prefWidth="100.0" text="Delete" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFieldTaskName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Name: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="Task's programs">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TableView fx:id="tableViewProgramList" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="8" GridPane.rowIndex="1">
+                                            <columns>
+                                                <TableColumn fx:id="columnProgramId" editable="false" prefWidth="100.0" text="ID" />
+                                              <TableColumn fx:id="columnName" prefWidth="150.0" text="Name" />
+                                              <TableColumn fx:id="columnWhitelist" prefWidth="200.0" text="Whitelist" />
+                                                <TableColumn fx:id="columnBlacklist" prefWidth="200.0" text="Blacklist" />
+                                            </columns>
+                                          </TableView>
+                                          <Label fx:id="labelTaskPrograms" text="&lt;Task name&gt; programs" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
+                                          <Label text="Name: " GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldWhitelist" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldBlacklist" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                          <Button fx:id="buttonAddActiveProgram" mnemonicParsing="false" onAction="#handleAddProgram" prefWidth="100.0" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                          <Label text="Whitelist: " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <Label text="Blacklist: " GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                          <Button fx:id="buttonDeleteActiveProgram" mnemonicParsing="false" onAction="#handleDeleteProgram" prefWidth="100.0" text="Delete" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Worked time">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TableView fx:id="tableViewWorkedTime" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="8" GridPane.rowIndex="1">
+                                            <columns>
+                                                <TableColumn fx:id="columnWorkedTimeId" editable="false" prefWidth="100.0" text="ID" />
+                                              <TableColumn fx:id="columnLogin" prefWidth="150.0" text="Login" />
+                                              <TableColumn fx:id="columnDate" prefWidth="150.0" text="Date" />
+                                                <TableColumn fx:id="columnTime" prefWidth="150.0" text="Time in minutes" />
+                                            </columns>
+                                          </TableView>
+                                          <Label fx:id="labelTaskWorkedTime" text="&lt;Task name&gt; worked time" GridPane.columnSpan="8" GridPane.halignment="CENTER" />
+                                          <Label text="Login: " GridPane.rowIndex="2" />
+                                          <Label text="Date: " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <Label text="Time: " GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                          <Button fx:id="buttonAddWorkedTime" mnemonicParsing="false" onAction="#handleAddWorkedTime" prefWidth="100.0" text="Add" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="textFieldTime" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                          <DatePicker fx:id="datePickerDay" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Button fx:id="buttonDeleteWorkedTime" mnemonicParsing="false" onAction="#handleDeleteWorkedTime" prefWidth="100.0" text="Delete" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
