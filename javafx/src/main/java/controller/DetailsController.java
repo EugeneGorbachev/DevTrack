@@ -121,7 +121,7 @@ public class DetailsController implements Initializable {
 
                     Task task = DataController.INSTANCE.getTaskByName(listViewTaskList.getSelectionModel().getSelectedItem().toString());
 
-                    showActiveProgramList(task);
+                    showProgramList(task);
 
                     showWorkedTimeList(task);
                 } else {
@@ -221,7 +221,9 @@ public class DetailsController implements Initializable {
         tableViewProgramList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                buttonDeleteActiveProgram.setDisable(false);
+                if (newValue != null) {
+                    buttonDeleteActiveProgram.setDisable(false);
+                }
             }
         });
 
@@ -236,9 +238,15 @@ public class DetailsController implements Initializable {
                 if (!task.getProgramNamesList().contains(event.getNewValue())) {
                     activeProgram.setName(event.getNewValue());
                     DataController.INSTANCE.updateActiveProgram(activeProgram);
+                } else {
+                    showProgramList(task);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Program with same name already exist");
+                    alert.showAndWait();
                 }
 
-                showActiveProgramList(task);
+                showProgramList(task);
             }
         });
 
@@ -285,6 +293,10 @@ public class DetailsController implements Initializable {
                     DataController.INSTANCE.updateWorkedTime(workedTime);
                 } else {
                     showWorkedTimeList(task);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("WorkedTime with same login and date already exist");
+                    alert.showAndWait();
                 }
             }
         });
@@ -306,6 +318,12 @@ public class DetailsController implements Initializable {
                 if (!task.validateWorkedTimeAttributes(workedTime.getLogin(), newDate)) {
                     workedTime.setDate(newDate);
                     DataController.INSTANCE.updateWorkedTime(workedTime);
+                } else {
+                    showWorkedTimeList(task);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("WorkedTime with same login and date already exist");
+                    alert.showAndWait();
                 }
             }
         });
@@ -408,7 +426,7 @@ public class DetailsController implements Initializable {
 
             DataController.INSTANCE.addActiveProgram(task, program);
 
-            showActiveProgramList(task);
+            showProgramList(task);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -436,7 +454,7 @@ public class DetailsController implements Initializable {
             } else {
                 // ... user chose CANCEL delete
             }
-            showActiveProgramList(task);
+            showProgramList(task);
         }
     }
 
@@ -496,7 +514,7 @@ public class DetailsController implements Initializable {
         tableViewWorkedTime.setDisable(true);
     }
 
-    private void showActiveProgramList(Task task) {
+    private void showProgramList(Task task) {
         tableViewProgramList.getItems().clear();
         if (task.getProgramList() != null) {
             tableViewProgramList.getItems().addAll(task.getProgramList());

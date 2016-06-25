@@ -155,6 +155,9 @@ public class MainFromController implements Initializable {
                         && comboBoxUserLogin.getValue() != null) {
                     buttonDraw.setDisable(false);
                 }
+                if (newValue == null) {
+                    buttonDraw.setDisable(true);
+                }
             }
         });
         
@@ -267,6 +270,7 @@ public class MainFromController implements Initializable {
             @Override
             public void handle(WindowEvent event) {
                 updateComboBoxData();
+                barChartWorkedTime.getData().clear();
                 showTaskList();
             }
         });

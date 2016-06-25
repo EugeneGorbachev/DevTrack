@@ -4,7 +4,6 @@ import entity.Task;
 
 import javax.persistence.EntityManager;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
